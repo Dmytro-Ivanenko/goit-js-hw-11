@@ -7,11 +7,22 @@
 .photo-card {
   width: 400px;
 
+  text-decoration: none;
+  color: #fff;
   img {
     display: block;
     height: 250px;
 
     object-fit: cover;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+
+    stroke: #fff;
+    fill: #fff;
   }
 }
 
@@ -24,4 +35,9 @@
   height: 50px;
 
   background-color: rgba(191, 203, 199, 0.11);
+}
+
+table th,
+table td {
+  text-align: center;
 }

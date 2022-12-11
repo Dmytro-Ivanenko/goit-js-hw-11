@@ -7,6 +7,7 @@ export default class Gallery {
   }
 
   createGallery(response) {
+    console.dir(response);
     const markup = response
       .map(
         ({
@@ -21,18 +22,31 @@ export default class Gallery {
           return `<a href="${largeImageURL}"><div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" width = "400"/>
   <div class="info">
-    <p class="info-item">
-      <b>Likes</b>
-    </p>
-    <p class="info-item">
-      <b>Views</b>
-    </p>
-    <p class="info-item">
-      <b>Comments</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads</b>
-    </p>
+  <table class="info-item">
+    <tr >
+      <th>
+        <svg class="icon">
+  <use href="./svg/sprite.svg#icon-heart"></use>
+</svg>
+      </th>
+      <th><svg class="icon">
+  <use href="./svg/sprite.svg#icon-eye"></use>
+</svg></th>
+      <th><svg class="icon">
+  <use href="./svg/sprite.svg#icon-bubble2"></use>
+</svg></th>
+      <th><svg class="icon">
+  <use href="./svg/sprite.svg#icon-down"></use>
+</svg></th>
+    </tr>
+    <tr >
+      <td>${likes}</td>
+      <td>${views}</td>
+      <td>${comments}</td>
+      <td>${downloads}</td>
+    </tr>
+    
+    </table>
   </div>
 </div></a>`;
         }
@@ -43,8 +57,16 @@ export default class Gallery {
   }
 
   renderGallery(markup) {
-    this.gallery.innerHTML = markup;
-    let gallery = new SimpleLightbox('.gallery a');
-    gallery.on('show.simplelightbox');
+    if (this.gallery.childElementCount === 0) {
+      this.gallery.innerHTML = markup;
+
+      return;
+    }
+
+    this.gallery.insertAdjacentHTML('beforeend', markup);
+  }
+
+  clearGallery() {
+    this.gallery.innerHTML = '';
   }
 }

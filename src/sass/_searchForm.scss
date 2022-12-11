@@ -4,6 +4,8 @@
   align-items: center;
   gap: 20px;
 
+  position: relative;
+
   margin-bottom: 40px;
 
   width: 100vw;
@@ -12,13 +14,37 @@
   background-color: rgba(23, 122, 89, 0.604);
 
   input {
+    padding-left: 15px;
+
     border: none;
+
     background-color: transparent;
     color: inherit;
+
     font-size: 20px;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.658);
     }
+  }
+}
+
+button {
+  height: 26px;
+  width: 26px;
+
+  background: #f15b42;
+  cursor: pointer;
+
+  border: none;
+  outline: none;
+  border-radius: 3px;
+
+  &:before {
+    content: '\f105';
+    font-family: FontAwesome;
+    color: #f9f0da;
+    font-size: 20px;
+    font-weight: bold;
   }
 }

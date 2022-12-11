@@ -25,19 +25,11 @@ export default class Gallery {
   <table class="info-item">
     <tr >
       <th>
-        <svg class="icon">
-  <use href="./svg/sprite.svg#icon-heart"></use>
-</svg>
+        Like
       </th>
-      <th><svg class="icon">
-  <use href="./svg/sprite.svg#icon-eye"></use>
-</svg></th>
-      <th><svg class="icon">
-  <use href="./svg/sprite.svg#icon-bubble2"></use>
-</svg></th>
-      <th><svg class="icon">
-  <use href="./svg/sprite.svg#icon-down"></use>
-</svg></th>
+      <th>Views</th>
+      <th>Comments</th>
+      <th>Downloads</th>
     </tr>
     <tr >
       <td>${likes}</td>

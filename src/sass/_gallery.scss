@@ -15,15 +15,6 @@
 
     object-fit: cover;
   }
-
-  .icon {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-
-    stroke: #fff;
-    fill: #fff;
-  }
 }
 
 .info {
@@ -37,7 +28,14 @@
   background-color: rgba(191, 203, 199, 0.11);
 }
 
+.info-item {
+  width: 100%;
+  table-layout: fixed;
+}
+
 table th,
 table td {
   text-align: center;
+  font-size: 15px;
+  font-family: 'Indie Flower', cursive;
 }

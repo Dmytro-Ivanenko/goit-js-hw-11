@@ -3,7 +3,7 @@ import PixabayAPI from './js/search';
 import Gallery from './js/gallery';
 const throttle = require('lodash.throttle');
 
-// Variables
+// ============ Variables
 const refs = {
   searchInput: document.querySelector('[name = searchQuery]'),
   submitBtn: document.querySelector('[name = searchBtn]'),
@@ -13,7 +13,7 @@ const pixabay = new PixabayAPI();
 const galleryAPI = new Gallery(refs.gallery);
 let gallerylightBox;
 
-// Event handlings
+// ============= Event handlings
 const onSubmit = e => {
   e.preventDefault();
   galleryAPI.clearGallery();
@@ -25,6 +25,7 @@ const onSubmit = e => {
     Notiflix.Notify.failure('The input field is empty, enter a search query');
     return;
   } else {
+    // make first require
     pixabay
       .newSearch(photoName.trim())
       .then(response => {
@@ -35,6 +36,7 @@ const onSubmit = e => {
           return;
         }
 
+        // render gallery if response have hits
         galleryAPI.createGallery(response.data.hits);
 
         gallerylightBox = new SimpleLightbox('.gallery a');
@@ -49,37 +51,49 @@ const onSubmit = e => {
       });
   }
 
-  // add scroll listener
-  window.addEventListener('scroll', throttle(onScroll, 400));
+  // add event listener for infinity scroll
+  window.addEventListener('scroll', onScroll);
 };
 
 const onScroll = e => {
+  try {
+    throttle(endPageCheck(), 1);
+  } catch {
+    return;
+  }
+};
+
+function endPageCheck() {
   if (window.pageYOffset >= document.documentElement.scrollHeight - 800) {
     console.log('The and of page');
 
+    // check response data
     pixabay
       .nextPageSearch()
       .then(response => {
-        if (!pixabay.checkResponse) {
-          window.removeEventListener('scroll', throttle(onScroll, 400));
+        if (!response) {
+          window.removeEventListener('scroll', onScroll);
+
           Notiflix.Notify.failure(
             "We're sorry, but you've reached the end of search results."
           );
 
           return;
         }
+
+        // add new cards if we have it
         galleryAPI.createGallery(response.data.hits);
         gallerylightBox.refresh();
         Notiflix.Notify.success(
-          `Hooray! We found ${pixabay.totalHits} images.`
+          `Hooray! We found ${response.data.hits.length} images.`
         );
       })
       .catch(error => {
         console.dir(error);
       });
   }
-};
+}
 
-// Events
+// =============== Events
 
 refs.submitBtn.addEventListener('click', onSubmit);

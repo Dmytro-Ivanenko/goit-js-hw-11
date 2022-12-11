@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
-import search from './js/search';
+import PixabayAPI from './js/search';
+import Gallery from './js/gallery';
 
 // Variables
 const refs = {
@@ -7,6 +8,9 @@ const refs = {
   submitBtn: document.querySelector('[name = searchBtn]'),
   gallery: document.querySelector('.gallery'),
 };
+
+const pixabay = new PixabayAPI();
+const galleryAPI = new Gallery(refs.gallery);
 
 // Event handlings
 const onSubmit = e => {
@@ -17,8 +21,15 @@ const onSubmit = e => {
     Notiflix.Notify.failure('The input field is empty, enter a search query');
     return;
   } else {
-    search(photoName.trim())
-      .then(response => createGallery(response))
+    pixabay
+      .search(photoName.trim())
+      .then(response => {
+        pixabay.checkResponse(response)
+          ? galleryAPI.createGallery(response.data.hits)
+          : Notiflix.Notify.failure(
+              'Sorry, there are no images matching your search query. Please try again.'
+            );
+      })
       .catch(error => {
         console.dir(error);
       });

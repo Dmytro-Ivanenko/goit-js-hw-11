@@ -18,4 +18,8 @@ export default class PixabayAPI {
     console.log(response);
     return response;
   }
+
+  checkResponse(response) {
+    return response.data.hits.length === 0 ? false : true;
+  }
 }

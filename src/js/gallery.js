@@ -7,7 +7,6 @@ export default class Gallery {
   }
 
   createGallery(response) {
-    console.dir(response);
     const markup = response
       .map(
         ({

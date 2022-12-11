@@ -24,7 +24,6 @@ export default class PixabayAPI {
     }
 
     this.page += 1;
-    console.log(this.page);
 
     const response = await this.search();
     return response;
@@ -44,7 +43,6 @@ export default class PixabayAPI {
   }
 
   checkResponse(response) {
-    console.dir('This is check: ' + response);
     return response.data.hits.length === 0 ? false : true;
   }
 }

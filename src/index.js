@@ -59,7 +59,7 @@ const onSubmit = e => {
 
 const onScroll = e => {
   try {
-    throttle(endPageCheck(), 1);
+    throttle(endPageCheck(), 1000);
   } catch {
     return;
   }

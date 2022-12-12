@@ -67,8 +67,6 @@ const onScroll = e => {
 
 function endPageCheck() {
   if (window.pageYOffset >= document.documentElement.scrollHeight - 800) {
-    console.log('The and of page');
-
     // check response data
     pixabay
       .nextPageSearch()

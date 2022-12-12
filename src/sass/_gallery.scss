@@ -9,11 +9,17 @@
 
   text-decoration: none;
   color: #fff;
+  transition: transform 200ms linear;
+
   img {
     display: block;
     height: 250px;
 
     object-fit: cover;
+  }
+
+  &:hover {
+    transform: scale(1.05);
   }
 }
 

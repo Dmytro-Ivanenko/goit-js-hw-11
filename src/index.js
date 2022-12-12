@@ -1,4 +1,6 @@
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import PixabayAPI from './js/search';
 import Gallery from './js/gallery';
 const throttle = require('lodash.throttle');

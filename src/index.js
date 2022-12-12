@@ -87,7 +87,7 @@ function endPageCheck() {
         galleryAPI.createGallery(response.data.hits);
         gallerylightBox.refresh();
         Notiflix.Notify.success(
-          `Hooray! We found ${response.data.hits.length} images.`
+          ` We added ${response.data.hits.length} new pictures to the page`
         );
       })
       .catch(error => {
